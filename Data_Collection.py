@@ -37,19 +37,20 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from statistics import mean, stdev
 from datetime import datetime
+from typing import Optional
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────────────
 
-def find_first(pattern: str, text: str, flags=0) -> str | None:
+def find_first(pattern: str, text: str, flags=0) -> Optional[str]:
     """Return first captured group of a regex, or None."""
     m = re.search(pattern, text, flags)
     return m.group(1).strip() if m else None
 
 
-def safe_float(val: str | None) -> float | None:
+def safe_float(val: Optional[str]) -> Optional[float]:
     try:
         return float(val) if val else None
     except (ValueError, TypeError):
@@ -61,7 +62,7 @@ def ns_strip(tag: str) -> str:
     return re.sub(r'\{[^}]+\}', '', tag)
 
 
-def xml_find_text(root, *paths) -> str | None:
+def xml_find_text(root, *paths) -> Optional[str]:
     """Try multiple tag paths (ignoring namespaces) and return first found text."""
     flat = ET.tostring(root, encoding='unicode')
     for path in paths:
@@ -176,7 +177,7 @@ def parse_defocus_txt(session_path: Path) -> dict:
     return result
 
 
-def parse_fractions_xml(xml_path: Path) -> dict | None:
+def parse_fractions_xml(xml_path: Path) -> Optional[dict]:
     """
     Parse a single FoilHole_*_Fractions.xml file.
     Returns per-movie metadata dict, or None on failure.
@@ -238,7 +239,7 @@ def parse_fractions_xml(xml_path: Path) -> dict | None:
     return result
 
 
-def parse_movie_xml(xml_path: Path) -> dict | None:
+def parse_movie_xml(xml_path: Path) -> Optional[dict]:
     """
     Parse the non-Fractions FoilHole_*.xml to extract microscope optics
     (AccelerationVoltage, SphericalAberration, NominalMagnification, PixelSize).
