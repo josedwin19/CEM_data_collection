@@ -1,4 +1,12 @@
-# EPU Session Metadata Extractor
+# ⚠️ This repository has been archived
+
+> **This tool has been migrated to [python-scripts-toolbox](https://github.com/josedwin19/python-scripts-toolbox/tree/main/tools/cem-data-collection).**
+>
+> Please update your bookmarks and references. The source code is now maintained as `tools/cem-data-collection` inside the toolbox.
+
+---
+
+# EPU Session Metadata Extractor (legacy)
 
 A lightweight, standard-library Python utility designed to parse Thermo Fisher Scientific EPU cryo-EM session directories. It automatically aggregates metadata from multiple sources, processes fraction logs, and generates structured acquisition reports in either human-readable text or machine-readable JSON formats.
 
